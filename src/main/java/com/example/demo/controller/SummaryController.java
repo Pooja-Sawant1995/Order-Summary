@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.OrderSummary;
+import com.example.demo.model.TrackingDetails;
 import com.example.demo.repository.SummaryRepository;
 import com.example.demo.service.SummaryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class SummaryController {
 
     @Autowired
     SummaryService summaryService;
-    
+
     @Autowired
     SummaryRepository summaryRepository;
 
@@ -22,6 +23,12 @@ public class SummaryController {
     @GetMapping(value = "/products/{customerId}/{productId}")
     public List<OrderSummary> getOrderDetails(@PathVariable int customerId,@PathVariable int productId ) {
         return summaryService.getOrderDetails(customerId,productId);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/tracking/{orderId}")
+    public List<TrackingDetails> getTrackingDetails(@PathVariable int orderId) {
+        return summaryService.getTrackingDetails(orderId);
     }
 
 }

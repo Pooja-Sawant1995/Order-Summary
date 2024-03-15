@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SummaryRepository extends JpaRepository<OrderSummary,Long> {
+public interface TrackingRepository extends JpaRepository<TrackingDetails,Long> {
 
-    @Query(value = "select * from order_summary where customer_id = ?1 and product_id = ?2 order by order_date",nativeQuery = true)
-    List<OrderSummary> findOrdersDetails(int customerId, int productId);
+
+    @Query(value = "select * from tracking_details where orderid = ?1 order by timestamp",nativeQuery = true)
+    List<TrackingDetails> findTrackingDetails(int orderId);
 }
